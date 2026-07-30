@@ -1,0 +1,419 @@
+:root {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", sans-serif;
+  color: #17223b;
+  background: transparent;
+  font-synthesis: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: transparent;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.collapsed {
+  display: grid;
+  place-items: center;
+}
+
+.launcher {
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 14px;
+  color: white;
+  background: linear-gradient(145deg, #6e7bf2, #4f5fdd);
+  box-shadow: 0 10px 28px rgb(24 35 67 / 28%);
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.launcher:hover {
+  filter: brightness(1.06);
+}
+
+.terminal-icon {
+  font-family: "SFMono-Regular", Menlo, monospace;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.launcher-chevron {
+  position: absolute;
+  right: 5px;
+  bottom: 3px;
+  font-size: 10px;
+}
+
+.expanded {
+  padding: 4px;
+}
+
+.panel {
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgb(109 122 151 / 30%);
+  border-radius: 18px;
+  color: #17223b;
+  background: rgb(250 251 253 / 96%);
+  box-shadow: 0 20px 52px rgb(24 35 67 / 22%);
+  backdrop-filter: blur(24px);
+}
+
+.panel-header {
+  min-height: 74px;
+  padding: 15px 14px 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid #e3e7ef;
+  user-select: none;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 16px;
+  font-weight: 650;
+}
+
+.panel-header p,
+.empty p {
+  margin-top: 3px;
+  color: #707a90;
+  font-size: 12px;
+}
+
+.header-actions,
+.inline-field,
+.form-actions,
+.panel-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.shortcut {
+  padding: 4px 7px;
+  border-radius: 6px;
+  color: #6c7589;
+  background: #eef1f6;
+  font-family: "SFMono-Regular", Menlo, monospace;
+  font-size: 10px;
+}
+
+.primary,
+.secondary,
+.icon-button,
+.row-actions button {
+  border-radius: 8px;
+  padding: 7px 11px;
+}
+
+.primary {
+  border: 1px solid #4f5fdd;
+  color: white;
+  background: #5566e8;
+}
+
+.primary:hover {
+  background: #4859d7;
+}
+
+.secondary {
+  border: 1px solid #d6dce7;
+  color: #34405a;
+  background: #fff;
+}
+
+.small {
+  padding: 5px 8px;
+  font-size: 12px;
+}
+
+.icon-button {
+  width: 27px;
+  height: 27px;
+  padding: 0;
+  border: 0;
+  color: #667085;
+  background: transparent;
+}
+
+.icon-button:hover {
+  background: #edf0f5;
+}
+
+.command-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 7px;
+}
+
+.command-row {
+  position: relative;
+  border-radius: 11px;
+}
+
+.command-row:hover {
+  background: #eef1f7;
+}
+
+.command-copy {
+  width: 100%;
+  min-height: 68px;
+  padding: 9px;
+  border: 0;
+  color: inherit;
+  background: transparent;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) 20px;
+  gap: 10px;
+  align-items: center;
+  text-align: left;
+}
+
+.group-icon {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  color: #4f5fdd;
+  background: #e8ebff;
+  font-family: "SFMono-Regular", Menlo, monospace;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.command-content {
+  min-width: 0;
+}
+
+.command-title {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.pin {
+  color: #778197;
+  font-size: 7px;
+}
+
+code {
+  display: block;
+  margin-top: 4px;
+  overflow: hidden;
+  color: #707a90;
+  font-family: "SFMono-Regular", Menlo, monospace;
+  font-size: 11px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.copy-mark {
+  color: #8992a6;
+  font-size: 14px;
+}
+
+.row-actions {
+  display: none;
+  position: absolute;
+  right: 10px;
+  bottom: 4px;
+  gap: 5px;
+}
+
+.command-row:hover .row-actions {
+  display: flex;
+}
+
+.row-actions button {
+  padding: 2px 6px;
+  border: 0;
+  color: #667085;
+  background: #fff;
+  font-size: 10px;
+}
+
+.row-actions .danger {
+  color: #b42318;
+}
+
+.panel-footer {
+  justify-content: space-between;
+  padding: 10px 15px;
+  border-top: 1px solid #e3e7ef;
+  color: #7b8497;
+  font-size: 10px;
+}
+
+.empty {
+  flex: 1;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.empty-icon {
+  color: #8790a5;
+  font-family: Menlo, monospace;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.empty h2 {
+  font-size: 15px;
+}
+
+.add-form {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.add-form label {
+  display: grid;
+  gap: 6px;
+  color: #4d5870;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+textarea,
+input,
+select {
+  width: 100%;
+  border: 1px solid #d5dbe6;
+  border-radius: 9px;
+  outline: none;
+  color: #17223b;
+  background: #fff;
+}
+
+textarea:focus,
+input:focus,
+select:focus {
+  border-color: #6b79ed;
+  box-shadow: 0 0 0 3px rgb(85 102 232 / 12%);
+}
+
+textarea {
+  min-height: 104px;
+  padding: 10px;
+  resize: none;
+  font-family: "SFMono-Regular", Menlo, monospace;
+  font-size: 12px;
+}
+
+input,
+select {
+  min-height: 36px;
+  padding: 7px 9px;
+}
+
+.inline-field input {
+  flex: 1;
+}
+
+.form-actions {
+  justify-content: flex-end;
+  margin-top: auto;
+}
+
+.validation {
+  min-height: 16px;
+  color: #b42318;
+  font-size: 11px;
+}
+
+.toast {
+  position: absolute;
+  left: 50%;
+  bottom: 50px;
+  transform: translate(-50%, 8px);
+  max-width: 88%;
+  padding: 7px 12px;
+  border-radius: 999px;
+  opacity: 0;
+  color: white;
+  background: rgb(23 34 59 / 92%);
+  font-size: 11px;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.toast.visible {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: #eef1f8;
+  }
+
+  .panel {
+    color: #eef1f8;
+    background: rgb(29 32 40 / 96%);
+    border-color: rgb(255 255 255 / 12%);
+  }
+
+  .panel-header,
+  .panel-footer {
+    border-color: rgb(255 255 255 / 10%);
+  }
+
+  .shortcut,
+  .icon-button:hover,
+  .command-row:hover {
+    background: rgb(255 255 255 / 8%);
+  }
+
+  .secondary,
+  .row-actions button,
+  textarea,
+  input,
+  select {
+    color: #eef1f8;
+    background: #2d313c;
+    border-color: #454b59;
+  }
+}
+
